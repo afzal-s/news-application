@@ -20,11 +20,9 @@ public class Subject {
 	}
 	
 	public void update(String data) {
-		for (IObserver observer : observerList) {			
-			if (observer != null) {			
-				observer.onUpdate(data);
-			}
-		}
+		observerList.stream()
+			.filter(observer -> observer != null)
+			.forEach(observer -> observer.onUpdate(data));
 	}
 
 }
