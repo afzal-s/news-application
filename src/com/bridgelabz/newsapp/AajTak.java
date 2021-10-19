@@ -1,3 +1,4 @@
+package com.bridgelabz.newsapp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * 
  * @author xfzxl
  */
-public class Subject {
+public class AajTak {
 	
 	List<IObserver> observerList = new ArrayList<IObserver>();
 	
@@ -19,10 +20,10 @@ public class Subject {
 		observerList.remove(observer);
 	}
 	
-	public void update(String data) {
+	public void update(News news) {
 		observerList.stream()
-			.filter(observer -> observer != null)
-			.forEach(observer -> observer.onUpdate(data));
+			.filter(observer -> observer != null && observer.getNewsType() == news.newsType)
+			.forEach(observer -> observer.onUpdate(news));
 	}
 
 }
